@@ -4,6 +4,11 @@ namespace LinkedListLength
 {
     class Program
     {
+        /* 扩展题目
+         * 随机打乱一个数组，尽量使每个数字的随机概率相等：
+         * 将index从0遍历到length-2 个数，从index_length-1里随机选取一个索引，与index索引位置的数据交换
+         * 证明较为复杂，没能完整说出来，但是得到面试官认可
+         */
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
