@@ -2,6 +2,15 @@
 
 namespace StreamNumbers
 {
+    /// <summary>
+    /// 一个流式数组，计算这个数组上滑动窗口内所有值的平均数
+    /// </summary>
+    /// <remarks>
+    /// 初步考虑使用双端队列/链表，但题目要求使用数组
+    /// 其次考虑使用List，用于动态增删，但是删除时间复杂度是O(n)
+    /// 最后确定使用int[]，使用指针来记录下一个将被替换的数字
+    /// 最后动态维护 currentSum，将 int[].Sum() 的O(n)优化至O(1)
+    /// </remarks>
     public class MovingAverage
     {
         private readonly int windowSize;

@@ -12,8 +12,15 @@ namespace LinkedListLength
             var entry = head.Add().Add().Add();
             var last = entry.Add().Add().Add().Add();
             last.Next = entry;
+            Console.WriteLine(GetLinkedListLength(head));
+            Console.Read();
         }
 
+        /// <summary>
+        /// 返回一个带环链表的长度
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
         public static int GetLinkedListLength(LinkedNode head)
         {
             if (head == null) throw new ArgumentNullException(nameof(head));
@@ -32,7 +39,6 @@ namespace LinkedListLength
             // 记录新的链表头并断开链表
             var newHead = fast.Next;
             // TODO: 不断开，仅比较
-            fast.Next = null;
             fast = newHead;
             slow = head;
 
@@ -40,8 +46,8 @@ namespace LinkedListLength
             while (fast != slow)
             {
                 result++;
-                fast = fast.Next == null ? head : fast.Next;
-                slow = slow.Next == null ? newHead : slow.Next;
+                fast = fast.Next == newHead ? head : fast.Next;
+                slow = slow.Next == newHead ? newHead : slow.Next;
             }
 
             return result;
