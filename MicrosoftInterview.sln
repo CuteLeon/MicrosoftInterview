@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneInterview", "PhoneInte
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VideoInterviews", "VideoInterviews", "{C1BCBE32-8CB0-42A2-AE79-7B01C89FAA2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamNumbers", "StreamNumbers\StreamNumbers.csproj", "{19CB6996-6239-49F4-ADB9-318D31899EB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamNumbers", "StreamNumbers\StreamNumbers.csproj", "{19CB6996-6239-49F4-ADB9-318D31899EB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedListLength", "LinkedListLength\LinkedListLength.csproj", "{23C15A65-DFA3-4EF1-99CC-CF01B6F2074F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +25,17 @@ Global
 		{19CB6996-6239-49F4-ADB9-318D31899EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19CB6996-6239-49F4-ADB9-318D31899EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19CB6996-6239-49F4-ADB9-318D31899EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23C15A65-DFA3-4EF1-99CC-CF01B6F2074F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23C15A65-DFA3-4EF1-99CC-CF01B6F2074F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23C15A65-DFA3-4EF1-99CC-CF01B6F2074F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23C15A65-DFA3-4EF1-99CC-CF01B6F2074F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{19CB6996-6239-49F4-ADB9-318D31899EB3} = {C1BCBE32-8CB0-42A2-AE79-7B01C89FAA2B}
+		{23C15A65-DFA3-4EF1-99CC-CF01B6F2074F} = {C1BCBE32-8CB0-42A2-AE79-7B01C89FAA2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6926AA0B-8680-4E2B-9A04-7952288A5E48}
