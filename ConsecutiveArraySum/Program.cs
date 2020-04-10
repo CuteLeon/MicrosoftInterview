@@ -12,6 +12,41 @@ namespace ConsecutiveArraySum
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            var numbers = new int[] { 1, 6, 2, 8, 3, 9, 4, 5, 0, 7 };
+            Console.WriteLine(IsExistSubSum(numbers, 10));
+            Console.WriteLine(IsExistSubSum(numbers, 0));
+            Console.WriteLine(IsExistSubSum(numbers, 45));
+            Console.WriteLine(IsExistSubSum(numbers, 46));
+            Console.WriteLine(IsExistSubSum(numbers, -1));
+            Console.ReadLine();
+        }
+
+        public static bool IsExistSubSum(int[] numbers, int target)
+        {
+            var leftSums = new int[numbers.Length];
+            leftSums[0] = numbers[0];
+
+            for (int index = 1; index < numbers.Length; index++)
+                leftSums[index] = leftSums[index - 1] + numbers[index];
+            int leftIndex = 0, rightIndex = 0;
+            while (rightIndex < numbers.Length &&
+                   leftIndex < numbers.Length)
+            {
+                var currentSum = leftSums[rightIndex] - leftSums[leftIndex] + numbers[leftIndex];
+                if (currentSum < target)
+                {
+                    rightIndex++;
+                }
+                else if (currentSum > target)
+                {
+                    leftIndex++;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
