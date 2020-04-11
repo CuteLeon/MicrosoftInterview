@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
 namespace MessageQueue
 {
@@ -31,7 +33,15 @@ namespace MessageQueue
 
         public static double GetLeastTime(List<Message> messages, int maxSingleSpeed, int maxThreadCount)
         {
+            if (maxSingleSpeed <= 0)
+                throw new ArgumentException(nameof(maxSingleSpeed));
+            if (maxThreadCount <= 0)
+                throw new ArgumentException(nameof(maxThreadCount));
+            if (maxThreadCount == 1)
+                return messages.Select(message => message.Size).Sum() / (double)maxSingleSpeed;
+
             double result = 0;
+            // 区分哪些作业并发写入，哪些作业单独写入，直接累计单独写入的作业的用时
             foreach (var message in messages)
             {
                 if (message.Speed * maxThreadCount >= maxSingleSpeed)
@@ -44,6 +54,50 @@ namespace MessageQueue
                     message.Single = true;
                     message.Time = message.Size / (double)maxSingleSpeed;
                     result += message.Time;
+                }
+            }
+
+            // 并发写入的作业按短作业优先放入队列
+            var queues = new Queue<Message>(messages
+                .Where(message => message.Single = false)
+                .OrderByDescending(message => message.Time));
+
+            var threads = new Message[maxThreadCount];
+            while (queues.Count > 0)
+            {
+                for (int index = 0; index < maxThreadCount; index++)
+                {
+                    if (threads[index] == null)
+                    {
+                        threads[index] = queues.Dequeue();
+                    }
+
+                    var leftSize = threads[index].Size;
+                    while (queues.Count > 0 && leftSize > 0)
+                    {
+                        if (threads[index].Size > leftSize)
+                        {
+                            threads[index].Size -= leftSize;
+                            leftSize = 0;
+                        }
+                        else
+                        {
+                            leftSize = threads[index].Speed - threads[index].Size;
+                            threads[index] = queues.Dequeue();
+                            threads[index].Size -= leftSize;
+                            leftSize = threads[index].Speed;
+                        }
+                    }
+                }
+
+                result++;
+            }
+
+            foreach (var message in queues)
+            {
+                if (message != null)
+                {
+                    result += message.Size / (double)message.Speed;
                 }
             }
 
