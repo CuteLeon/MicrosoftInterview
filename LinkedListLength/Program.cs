@@ -43,7 +43,6 @@ namespace LinkedListLength
 
             // 记录新的链表头并断开链表
             var newHead = fast.Next;
-            // TODO: 不断开，仅比较
             fast = newHead;
             slow = head;
 
