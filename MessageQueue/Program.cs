@@ -31,6 +31,21 @@ namespace MessageQueue
             Console.Read();
         }
 
+        /// <summary>
+        /// 获取写入这些消息的时长
+        /// </summary>
+        /// <param name="messages"></param>
+        /// <param name="maxSingleSpeed"></param>
+        /// <param name="maxThreadCount"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// 面试官说可以使用最简单的模型来调度消息的写入；
+        /// 但是思路一直卡在想要使用动态规划和分支界限得到最优的写入方案和时间；
+        /// 没能深入考虑到使用传统的作业调度算法来模拟消息的写入，
+        /// 可怜大学现代操作系统课程我还做了一套模拟的可视化作业调度系统，还通过这个系统拿到了这门课的免考！
+        /// 但是这次思路钻死胡同了...
+        /// </remarks>
+        /// <see cref="https://github.com/CuteLeon/VisualProcessDispatchSystem" langword="可视化作业调度管理系统"/>
         public static double GetLeastTime(List<Message> messages, int maxSingleSpeed, int maxThreadCount)
         {
             if (maxSingleSpeed <= 0)
