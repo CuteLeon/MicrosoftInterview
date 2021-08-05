@@ -43,6 +43,9 @@ namespace LinkedListLength
 
             // 记录新的链表头并断开链表
             var newHead = fast.Next;
+            fast.Next = null;
+            
+            // 使两个指针分别沿着新旧两个head各走一次，则两个指针走的总路径长度相同，最后两个指针将在两个head共同的tail处相遇，此时两个指针都走了链表总长度的距离
             fast = newHead;
             slow = head;
 
